@@ -1,3 +1,5 @@
+import TextInput from "../components/TextInput";
+
 const SignUp = () => {
   return (
     <>
@@ -7,34 +9,12 @@ const SignUp = () => {
             <p className="text-gray-600">밀키웨이 🌠</p>
             <h2 className="text-xl font-bold">회원가입</h2>
           </div>
-          <div>
-            <input
-              className="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
-              type="text"
-              placeholder="아이디를 입력해주세요"
-            />
-          </div>
-          <div>
-            <input
-              className="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
-              type="password"
-              placeholder="비밀번호를 입력해주세요"
-            />
-          </div>
-          <div>
-            <input
-              className="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
-              type="password"
-              placeholder="비밀번호 확인을 위해 한 번 더 입력 해 주세요"
-            />
-          </div>
-          <div>
-            <input
-              className="w-full p-4 text-sm bg-gray-50 focus:outline-none border border-gray-200 rounded text-gray-600"
-              type="text"
-              placeholder="닉네임을 입력해주세요"
-            />
-          </div>
+          <TextInput placeholder={"아이디를 입력해주세요"} />
+          <TextInput placeholder={"비밀번호를 입력해주세요"} />
+          <TextInput
+            placeholder={"비밀번호 확인을 위해 한 번 더 입력해주세요"}
+          />
+          <TextInput placeholder={"닉네임을 입력해주세요"} />
           <div>
             <button className="w-full py-4 bg-blue-600 hover:bg-blue-700 rounded text-sm font-bold text-gray-50 transition duration-200">
               회원가입
