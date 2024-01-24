@@ -1,12 +1,30 @@
 import React from "react";
 import "./tailwind.css";
+import SignUp from "./pages/SignUp";
+import LogIn from "./pages/LogIn";
+import Home from "./pages/Home";
+import Write from "./pages/Write";
+import View from "./pages/View";
+import Edit from "./pages/Edit";
+import MyPage from "./pages/MyPage";
+import Skeleton from "./components/Skeleton";
+
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <h1>feature/Memeber생성 16:30</h1>
-      <h1>branch 이슈 16:35</h1>
-      <div className="bg-red-500 text-white p-5">Hello Tailwind CSS!</div>
+      <Routes>
+        <Route path="/boards/*" element={<Skeleton />}>
+          <Route index element={<Home />} />
+          <Route path="write" element={<Write />} />
+          <Route path="view/:postId" element={<View />} />
+          <Route path="edit/:postId" element={<Edit />} />
+          <Route path="mypage" element={<MyPage />} />
+        </Route>
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signUp" element={<SignUp />} />
+      </Routes>
     </div>
   );
 }
