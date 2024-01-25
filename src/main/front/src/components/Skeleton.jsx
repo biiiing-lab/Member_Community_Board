@@ -1,15 +1,21 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const Skeleton = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex flex-wrap -mx-3 w-full drop-shadow-sm mx-auto ">
         <div className="px-20 mb-1 mx-auto w-full bg-white border-gray-200">
           <div className="sm:flex items-center sitems-stretch justify-between grow lg:mb-0 py-4 px-5 max-w-5xl mx-auto">
-            <div className="flex flex-col flex-wrap justify-center mb-5 mr-3 lg:mb-0">
-              <span className="my-0 flex text-dark font-semibold text-[1.35rem]/[1.2] flex-col justify-center">
-                밀키웨이 🌠
-              </span>
+            <div className="flex flex-col flex-wrap justify-center mb-5  lg:mb-0">
+              <button className="flex" onClick={() => navigate("/")}>
+                <span className="my-0  text-rose-500	font-semibold text-[1.35rem]/[1.2] flex-col">
+                  m i l k y
+                </span>
+                <span className="my-0 font-semibold text-[1.35rem]/[1.2] text-indigo-500">
+                  &nbsp; * w a y
+                </span>
+              </button>
             </div>
             <div className="flex items-center lg:shrink-0 lg:flex-nowrap">
               <div className="relative flex items-center lg:ml-4 sm:mr-0 mr-2">
