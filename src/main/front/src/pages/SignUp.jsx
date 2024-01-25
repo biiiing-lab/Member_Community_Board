@@ -23,7 +23,7 @@ const SignUp = () => {
             placeholder={"비밀번호 확인을 위해 한 번 더 입력해주세요"}
           />
           <TextInput placeholder={"닉네임을 입력해주세요"} />
-          <Button value={"회원가입"} />
+          <Button value={"회원가입"} type={"primary"} />
         </div>
       </section>
     </>

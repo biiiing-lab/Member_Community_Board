@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import TextInput from "../components/TextInput";
+import ListItem from "../components/ListItem";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -15,25 +17,14 @@ const Home = () => {
           <div className="text-2xl font-bold	">자유게시판</div>
           <div>
             <div className="w-full sm:w-64 inline-block relative ">
-              <input
-                type=""
-                name=""
-                className="leading-snug border border-gray-300 block w-full appearance-none bg-gray-100 text-sm text-gray-600 py-4 px-4 pl-8 rounded"
-                placeholder="Search"
-              />
-
-              <div className="pointer-events-none absolute pl-3 inset-y-0 left-0 flex items-center px-2 text-gray-300">
-                <svg
-                  className="fill-current h-3 w-3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 511.999 511.999"
-                >
-                  <path d="M508.874 478.708L360.142 329.976c28.21-34.827 45.191-79.103 45.191-127.309C405.333 90.917 314.416 0 202.666 0S0 90.917 0 202.667s90.917 202.667 202.667 202.667c48.206 0 92.482-16.982 127.309-45.191l148.732 148.732c4.167 4.165 10.919 4.165 15.086 0l15.081-15.082c4.165-4.166 4.165-10.92-.001-15.085zM202.667 362.667c-88.229 0-160-71.771-160-160s71.771-160 160-160 160 71.771 160 160-71.771 160-160 160z" />
-                </svg>
-              </div>
+              <TextInput placeholder={"Search"} />
             </div>
             <div className="w-20 inline-block ml-3">
-              <Button value={"글쓰기"} onClick={onClickWrite} />
+              <Button
+                value={"글쓰기"}
+                type={"primary"}
+                onClick={onClickWrite}
+              />
             </div>
           </div>
         </div>
@@ -41,37 +32,26 @@ const Home = () => {
           <table className="table-auto border-collapse w-full ">
             <thead>
               <tr
-                className="rounded text-sm font-medium text-gray-700 text-left border-t-2 border-b"
+                className="w-full rounded text-sm font-medium text-gray-700 text-left border-t-2 border-b"
                 style={{ fontSize: "0.9674rem" }}
               >
-                <th className="px-4 py-2">제목</th>
-                <th className="px-4 py-2">글쓰니</th>
-                <th className="px-4 py-2">조회수</th>
+                <th className="w-3/4 px-4 py-2 ">
+                  <p classsName="w-100">제목</p>
+                </th>
+                <th className="w-1/6 px-4 py-2 ">작성자</th>
+                <th className="w-1/6 px-4 ">조회수</th>
               </tr>
             </thead>
             <tbody className="text-sm font-normal text-gray-700">
-              <tr className="hover:bg-gray-50 border-b border-gray-200 cursor-pointer">
-                <td className="px-4 py-4 flex items-center">
-                  A Long and Windin
-                </td>
-                <td className="px-4 py-4">Adam</td>
-                <td className="px-4 py-4">112</td>
-              </tr>
-              <tr className="hover:bg-gray-50 border-b border-gray-200cursor-pointer">
-                <td className="px-4 py-4 flex items-center">
-                  A Long and Winding Tour of the History of UI Frameworks and
-                  Tools and the Impact on Design
-                </td>
-                <td className="px-4 py-4">Adam</td>
-                <td className="px-4 py-4">112</td>
-              </tr>
-              <tr className="hover:bg-gray-50  border-gray-200 cursor-pointer">
-                <td className="px-4 py-4 flex items-center">
-                  A Long and Winding Tour of
-                </td>
-                <td className="px-4 py-4">Adam</td>
-                <td className="px-4 py-4">112</td>
-              </tr>
+              <ListItem
+                title="ㅁㄴㅇㄹㅇㄴㅇㄴㅁㄴㅇㄹㅇㄴㄹㄹㅇㄴㄹㄴㅇㄹㄴㅇhhkhjf"
+                author="sdsdf"
+                view="dsfsdf"
+              />
+              <ListItem title="sdafdsf" author="sdsdf" view="dsfsdf" />
+              <ListItem title="sdafdsf" author="sdsdf" view="dsfsdf" />
+              <ListItem title="sdafdsf" author="sdsdf" view="dsfsdf" />
+              <ListItem title="sdafdsf" author="sdsdf" view="dsfsdf" />
             </tbody>
           </table>
         </div>

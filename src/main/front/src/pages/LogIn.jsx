@@ -18,7 +18,7 @@ const LogIn = () => {
           </div>
           <TextInput placeholder={"아이디를 입력해주세요"} />
           <TextInput placeholder={"비밀번호를 입력해주세요"} />
-          <Button value={"로그인"} />
+          <Button value={"로그인"} type={"primary"} />
           <div className="flex items-center justify-between"></div>
         </div>
       </section>

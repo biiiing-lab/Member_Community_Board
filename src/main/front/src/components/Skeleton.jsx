@@ -6,19 +6,24 @@ const Skeleton = () => {
     <>
       <div className="flex flex-wrap -mx-3 w-full drop-shadow-sm mx-auto ">
         <div className="px-20 mb-1 mx-auto w-full bg-white border-gray-200">
-          <div className="sm:flex items-center sitems-stretch justify-between grow lg:mb-0 py-4 px-5 max-w-5xl mx-auto">
+          <div className="sm:flex items-center sitems-stretch justify-between grow lg:mb-0 py-4 max-w-5xl mx-auto">
             <div className="flex flex-col flex-wrap justify-center mb-5  lg:mb-0">
               <button className="flex" onClick={() => navigate("/")}>
-                <span className="my-0  text-rose-500	font-semibold text-[1.35rem]/[1.2] flex-col">
+                <span className="my-0  text-rose-500	font-semibold text-base	 flex-col">
                   m i l k y
                 </span>
-                <span className="my-0 font-semibold text-[1.35rem]/[1.2] text-indigo-500">
+                <span className="my-0 font-semibold text-base text-indigo-500">
                   &nbsp; * w a y
                 </span>
               </button>
             </div>
             <div className="flex items-center lg:shrink-0 lg:flex-nowrap">
-              <div className="relative flex items-center lg:ml-4 sm:mr-0 mr-2">
+              <button
+                className="relative flex items-center lg:ml-4 sm:mr-0 mr-2 cursor-pointer"
+                onClick={() => {
+                  navigate("/mypage");
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -32,7 +37,7 @@ const Skeleton = () => {
                   />
                 </svg>
                 <span className="ml-2">user</span>
-              </div>
+              </button>
             </div>
           </div>
         </div>
