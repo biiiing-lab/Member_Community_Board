@@ -37,17 +37,17 @@ public class BoardController {
     }
 
 //새 게시물 작성
-    @GetMapping("/new-article")
+    @GetMapping("/new-board")
     public String newBoard(@RequestParam(required = false) Long id, Model model){
 
         if(id == null) {
-            model.addAttribute("article", new BoardViewResponse());
+            model.addAttribute("board", new BoardViewResponse());
         } else {
             Board board = boardService.findById(id);
-            model.addAttribute("article", new BoardViewResponse(board));
+            model.addAttribute("board", new BoardViewResponse(board));
         }
 
-        return "newArticle";
+        return "newBoard";
     }
 
 

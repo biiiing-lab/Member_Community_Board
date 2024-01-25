@@ -21,6 +21,7 @@ public class BoardApiController {
         Board savedBoard = boardService.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedBoard);
     }
+
     @GetMapping("/api/boards")
     public ResponseEntity<List<BoardResponse>> findAllBoards(){
         List<BoardResponse> boards = boardService.findAll().stream().map(BoardResponse::new).toList();
