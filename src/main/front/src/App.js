@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/boards/*" element={<Skeleton />}>
+        <Route path="/" element={<Skeleton />}>
           <Route index element={<Home />} />
           <Route path="write" element={<Write />} />
           <Route path="view/:postId" element={<View />} />
