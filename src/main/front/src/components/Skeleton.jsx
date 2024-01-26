@@ -4,7 +4,7 @@ const Skeleton = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="flex flex-wrap -mx-3 w-full drop-shadow-sm mx-auto ">
+      <div className="flex flex-wrap -mx-3 w-full border-b mx-auto ">
         <div className="px-20 mb-1 mx-auto w-full bg-white border-gray-200">
           <div className="sm:flex items-center sitems-stretch justify-between grow lg:mb-0 py-4 max-w-5xl mx-auto">
             <div className="flex flex-col flex-wrap justify-center mb-5  lg:mb-0">
