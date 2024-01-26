@@ -1,5 +1,7 @@
+import WriteEditor from "../components/WriteEditor";
+
 const Write = () => {
-  return <>Write</>;
+  return <WriteEditor type={"write"} />;
 };
 
 export default Write;
