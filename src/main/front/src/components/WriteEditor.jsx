@@ -5,10 +5,7 @@ const WriteEditor = ({ type, title, content }) => {
 
   const navigate = useNavigate();
 
-
-  const uploadState = () => {
-    navigate("/");
-  }
+  console.log(title)
   return (
     <div className="max-w-5xl mx-auto mt-10">
       <div className="text-2xl font-bold mb-5">
@@ -37,7 +34,7 @@ const WriteEditor = ({ type, title, content }) => {
         </div>
         <div className="w-40 ml-auto">
           <Button
-            onClick={uploadState}
+            onClick={()=>{navigate("/")}}
             value={type === "write" ? "게시물 업로드" : "게시글 수정하기"}
             type={"primary"}
           />

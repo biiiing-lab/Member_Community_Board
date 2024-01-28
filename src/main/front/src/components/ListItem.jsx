@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const ListItem = ({ title, author, view }) => {
+const ListItem = ({ title, author, view, content, postId }) => {
   const navigate = useNavigate();
 
   const handlePostClick = () => {
-    console.log("Clicked on post with title:", title, author, view);
-    navigate(`/view/${encodeURIComponent(title)}`, { state: { title, author } });
+    console.log("Clicked on post with title:", title, author, view, content);
+    navigate(`/view/${encodeURIComponent(postId)}`, { state: { title, author, content } });
   };
 
   return (

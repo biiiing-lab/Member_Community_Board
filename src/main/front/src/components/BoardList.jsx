@@ -3,12 +3,19 @@ import ListItem from "./ListItem";
 
 const BoardList = () => {
   const data = [
-    { title: "title1", author: "sdsdf1", view: "dsfsdf1" },
-    { title: "title2", author: "sdsdf2", view: "dsfsdf2" },
-    { title: "title3", author: "sdsdf3", view: "dsfsdf3" },
-    { title: "title4", author: "sdsdf4", view: "dsfsdf4" },
-    { title: "title5", author: "sdsdf5", view: "dsfsdf5" },
+    { title: "title1", author: "sdsdf1", view: "dsfsdf1", content: "본문내용" },
+    { title: "title2", author: "sdsdf2", view: "dsfsdf2", content: "본문내용2" },
+    { title: "title3", author: "sdsdf3", view: "dsfsdf3", content: "본문내용3" },
+    { title: "title4", author: "sdsdf4", view: "dsfsdf4", content: "본문내용4" },
+    { title: "title5", author: "sdsdf5", view: "dsfsdf5", content: "본문내용5" },
   ];
+
+  let postId = 1;
+
+  const newData = data.map((item) => ({
+    ...item,
+    postId: postId++
+  }));
 
   return (
     <>
@@ -26,7 +33,7 @@ const BoardList = () => {
           </tr>
         </thead>
         <tbody className="text-sm font-normal text-gray-700">
-          {data.map((item, index) => (
+          {newData.map((item, index) => (
             <ListItem key={index} {...item} author={item.author} />
           ))}
         </tbody>
