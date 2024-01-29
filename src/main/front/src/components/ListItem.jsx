@@ -5,8 +5,7 @@ const ListItem = ({ title, author, view, content, postId }) => {
   const navigate = useNavigate();
 
   const handlePostClick = () => {
-    console.log("Clicked on post with title:", title, author, view, content);
-    navigate(`/view/${encodeURIComponent(postId)}`, { state: { title, author, content } });
+    navigate(`/view/${encodeURIComponent(postId)}`, { state: { title, author, content, postId } });
   };
 
   return (
