@@ -1,12 +1,16 @@
 import WriteEditor from "../components/WriteEditor";
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 const Edit = () => {
+  const location = useLocation();
+  const { title, content } = location.state || {};
   return (
     <>
       <WriteEditor
         type={"edit"}
-        title={"수정할제목"}
-        content={"수정하할내용"}
+        title={title || ""}
+        content={content || ""}
       />
     </>
   );
