@@ -22,14 +22,32 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // web mvc 추가
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // 이 강의의 주제인 Security 추가
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // 웹 페이지를 쉽게 생성하기 위해 thymeleaf 추가
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // Thymeleaf에서 SpringSecurity를 Integration
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    // spring data jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // h2
     runtimeOnly 'com.h2database:h2'
+    // starter test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // security test
+    testImplementation 'org.springframework.security:spring-security-test'
+    // junit test
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 }
 
 tasks.named('test') {
