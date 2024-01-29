@@ -6,6 +6,8 @@ import com.example.member_coummunity_board.Domain.Board;
 import com.example.member_coummunity_board.Repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +22,7 @@ public class BoardService {
         return boardRepository.save(request.toEntity());
     }
 
-    public List<Board> findAll(){
+    public List<Board> findAll(Pageable pageable){
         return boardRepository.findAll();
     }
 
@@ -41,4 +43,15 @@ public class BoardService {
         board.update(request.getTitle(), request.getContent());
         return board;
     }
+
+    //검색
+    public Page<Board> boardSearchList(String searchKeyword, Pageable pageable){
+        return boardRepository.findByTitleContaining(searchKeyword, pageable);
+    }
+
+    //특정 게시글 불러오기
+    public Board boardview(Long id){
+        return boardRepository.findById(id).get(); //어떤게시글을 불러올지 지정을해주어야한다 (Integer값으로)
+    }
+
 }
