@@ -56,12 +56,12 @@ public class WebSecurityConfig {
                         .anyRequest().authenticated())
 
                 .formLogin(login -> login
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/article", true)
+                        .loginPage("/Login")
+                        .defaultSuccessUrl("/Home", true)
                         .permitAll())
 
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/Login")
                         .invalidateHttpSession(true)
                         .deleteCookies(JwtProperties.COOKIE_NAME));
         return http.build();

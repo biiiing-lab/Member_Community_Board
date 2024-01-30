@@ -10,39 +10,36 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 public class MemberController {
 
     private final MemberService memberService;
 
     /** 회원가입 **/
     // 회원가입 페이지 출력
-    @GetMapping("/join")
+    @GetMapping("/SignUp")
     public String join() {
-        return "join";
+        return "SignUp";
     }
 
     // 회원가입 로직
-    @PostMapping("/join")
+    @PostMapping("/SignUp")
     public String join(@ModelAttribute JoinDto joinDto) {
         memberService.joinMember(joinDto);
-        return "redirect:login"; // 회원가입 후 로그인 페이지로 이동
+        return "redirect:Login"; // 회원가입 후 로그인 페이지로 이동
     }
 
     /** 로그인 **/
     // 로그인 페이지 출력
-    @GetMapping("/login")
+    @GetMapping("/Login")
     public String login() {
-        return "login";
+        return "Login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/Login")
     public String login(@RequestBody LoginDto loginDto) {
         try {
             return memberService.login(loginDto);
@@ -56,12 +53,12 @@ public class MemberController {
     public String logout(HttpServletRequest request,HttpServletResponse response) {
         new SecurityContextLogoutHandler().logout(request, response,
                 SecurityContextHolder.getContext().getAuthentication());
-        return "redirect:/login";
+        return "redirect:/Login";
     }
 
     // 로그인 로직
     @GetMapping("/mypage/{memberId}")
     public String mypage() {
-        return ""; // 개인 페이지
+        return "MyPage"; // 개인 페이지
     }
 }

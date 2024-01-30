@@ -5,6 +5,6 @@ import org.springframework.security.core.userdetails.User;
 
 import java.util.Optional;
 
-public interface MemberRepository extends JpaRepository<Member, String> {
-    User findByMember(String memberId);
+public interface MemberRepository extends JpaRepository<Member, Long> {
+    User findByMemberId(String memberId);
 }
