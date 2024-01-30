@@ -23,7 +23,7 @@ public class BoardService {
     }
 
     public List<Board> findAll(Pageable pageable){
-        return boardRepository.findAll();
+        return boardRepository.findAll(pageable).getContent();
     }
 
     public Board findById (long id) {
@@ -49,9 +49,11 @@ public class BoardService {
         return boardRepository.findByTitleContaining(searchKeyword, pageable);
     }
 
+    /*
     //특정 게시글 불러오기
     public Board boardview(Long id){
         return boardRepository.findById(id).get(); //어떤게시글을 불러올지 지정을해주어야한다 (Integer값으로)
     }
+     */
 
 }
