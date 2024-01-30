@@ -1,4 +1,4 @@
-package com.example.member_coummunity_board.Dto;
+package com.example.member_coummunity_board.DTO;
 
 import lombok.Builder;
 import lombok.Data;

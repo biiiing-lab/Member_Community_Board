@@ -1,3 +1,4 @@
+
 package com.example.member_coummunity_board.Config;
 
 import com.example.member_coummunity_board.Jwt.JwtProperties;

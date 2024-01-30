@@ -1,7 +1,7 @@
 package com.example.member_coummunity_board.Controller;
 
-import com.example.member_coummunity_board.Dto.JoinDto;
-import com.example.member_coummunity_board.Dto.LoginDto;
+import com.example.member_coummunity_board.DTO.JoinDto;
+import com.example.member_coummunity_board.DTO.LoginDto;
 import com.example.member_coummunity_board.Service.MemberService;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
