@@ -18,8 +18,8 @@ function App() {
         <Route path="/" element={<Skeleton />}>
           <Route index element={<Home />} />
           <Route path="write" element={<Write />} />
-          <Route path="view/:postId" element={<View />} />
-          <Route path="edit/:postId" element={<Edit />} />
+          <Route path="view/:id" element={<View />} />
+          <Route path="edit/:id" element={<Edit />} />
           <Route path="mypage" element={<MyPage />} />
         </Route>
         <Route path="/login" element={<LogIn />} />

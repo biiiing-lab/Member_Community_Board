@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TextInput from "../components/TextInput";
 import { useNavigate } from "react-router-dom";
+import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 
 const SignUp = () => {
@@ -31,6 +31,9 @@ const SignUp = () => {
 
     if (!id || id.length < 4) return;
     if (!password || password.length < 4) return;
+    if (!checkpassword || checkpassword !== password) return;
+    if (!nickname || nickname.length < 9) return;
+
     console.log(id, password, checkpassword, nickname);
     navigate("/login");
   };
@@ -40,7 +43,14 @@ const SignUp = () => {
       <section className="flex justify-center items-center h-screen bg-gray-100">
         <div className="max-w-md w-full bg-white rounded p-6 space-y-4">
           <div className="mb-4">
-            <p className="text-gray-600">밀키웨이 🌠</p>
+            <div className="mb-2">
+              <span className="my-0  text-rose-500	font-semibold text-s ">
+                m i l k y
+              </span>
+              <span className="my-0 font-semibold text-s text-indigo-500">
+                &nbsp; * w a y
+              </span>
+            </div>
             <h2 className="text-xl font-bold">회원가입</h2>
           </div>
           <TextInput
@@ -83,8 +93,8 @@ const SignUp = () => {
             value={nickname}
             onChange={onChange}
             error={
-              submitted && (!nickname || nickname.length < 4)
-                ? "닉네임은 4자 이상으로 입력 해주세요"
+              submitted && (!nickname || nickname.length < 9)
+                ? "닉네임은 9자 이상으로 입력 해주세요"
                 : ""
             }
           />

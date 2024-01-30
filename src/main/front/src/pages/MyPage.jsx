@@ -1,12 +1,16 @@
 import BoardList from "../components/BoardList";
+import Button from "../components/Button";
 
 const MyPage = () => {
   return (
     <>
       <div className="py-10 bg-indigo-100	">
-        <div className="flex mx-auto max-w-5xl">
-          <div className="font-bold mr-2">유저네임</div>
-          <div>test</div>
+        <div className="flex justify-between mx-auto max-w-5xl">
+          <div className="w-full my-auto">
+            <span className="font-bold mr-2">유저네임</span>
+            <span>test</span>
+          </div>
+          <Button value="로그아웃" type="tertiary"></Button>
         </div>
       </div>
       <div className="bg-white mt-10 spb-4 mx-auto rounded max-w-5xl	">
