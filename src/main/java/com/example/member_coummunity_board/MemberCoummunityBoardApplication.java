@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class MemberCoummunityBoardApplication {
-
+    //빠끄으으으으으으으으ㅡㅇㅇ응으ㅡ으ㅡㅡ으으ㅡㅇㅇ 집가고씨따
     public static void main(String[] args) {
         SpringApplication.run(MemberCoummunityBoardApplication.class, args);
     }
