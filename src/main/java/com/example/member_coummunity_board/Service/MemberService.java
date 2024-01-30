@@ -1,7 +1,7 @@
 package com.example.member_coummunity_board.Service;
 
-import com.example.member_coummunity_board.Dto.JoinDto;
-import com.example.member_coummunity_board.Dto.LoginDto;
+import com.example.member_coummunity_board.DTO.JoinDto;
+import com.example.member_coummunity_board.DTO.LoginDto;
 import com.example.member_coummunity_board.Entity.Member;
 import com.example.member_coummunity_board.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
