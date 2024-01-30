@@ -1,48 +1,46 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
 import axios from "axios";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ListItem from "../components/ListItem";
 
 const View = () => {
   const navigate = useNavigate();
-  // const location = useLocation();
-  // const { data, author, content, postId } = location.state || {};
-
-  // const [title, setTitle] = useState("");
-
-  // useEffect(() => {
-  //   if (location.state && location.state.title) {
-  //     setTitle(location.state.title);
-  //   }
-  // }, [location.state]);
-
-  // const handleButtonClick = () => {
-  //   navigate(`/edit/${encodeURIComponent(postId)}`, {
-  //     state: { title, author, content },
-  //   });
-  // };
-
   const { id } = useParams();
   console.log(id);
   const [data, setData] = useState([]);
 
-  const fetchData = async () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`http://localhost:4000/posts/${id}`)
+        .then((res) => {
+          console.log("불러오기 성공!");
+          setData(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    fetchData();
+    console.log(data);
+  }, [id]);
+
+  const onEditButtonClick = () => {
+    navigate(`edit/${id}`);
+  };
+  const onDeleteButtonClick = async () => {
     await axios
-      .get(`http://localhost:4000/posts/${id}`)
+      .delete(`http://localhost:4000/posts/${id}`)
       .then((res) => {
-        console.log("불러오기 성공!");
-        setData(res.data);
+        console.log("삭제성공!");
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
-  useEffect(() => {
-    fetchData();
-    console.log(data);
-  }, []);
   return (
     <>
       <div className="max-w-5xl mx-auto mt-10">
@@ -58,20 +56,25 @@ const View = () => {
             </div>
           </div>
           <div className="flex justify-end">
-            {/* <div className="w-40 mx-2.5">
+            <div className="w-40 mx-2.5">
               <Button
-                onClick={handleButtonClick}
+                onClick={onEditButtonClick}
                 value={"게시글 수정하기"}
                 type={"primary"}
               />
             </div>
             <div className="w-40">
               <Button
-                onClick={handleButtonClick}
+                onClick={onDeleteButtonClick}
                 value={"게시글 삭제하기"}
                 type={"secondary"}
               />
-            </div> */}
+              <Button
+                onClick={() => navigate("/")}
+                value={"이전으로"}
+                type={"tertiary"}
+              />
+            </div>
           </div>
         </form>
       </div>
