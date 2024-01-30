@@ -1,11 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const ListItem = ({ title, author, view, content, postId }) => {
+const ListItem = ({ title, author, date, content, postId }) => {
   const navigate = useNavigate();
 
   const handlePostClick = () => {
-    navigate(`/view/${encodeURIComponent(postId)}`, { state: { title, author, content, postId } });
+    navigate(`/view/${encodeURIComponent(postId)}`, {
+      state: { title, author, content, postId },
+    });
   };
 
   return (
@@ -15,7 +17,7 @@ const ListItem = ({ title, author, view, content, postId }) => {
     >
       <td className="px-4 py-4 flex items-center">{title}</td>
       <td className="px-4 py-4">{author}</td>
-      <td className="px-4 py-4">{view}</td>
+      <td className="px-4 py-4">{date}</td>
     </tr>
   );
 };
