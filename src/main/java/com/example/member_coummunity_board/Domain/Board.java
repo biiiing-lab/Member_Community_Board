@@ -5,6 +5,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="articleId", updatable = false)
+    @Column(name="boardId", updatable = false)
     private Long id;
 
     @Column(name="title", nullable = false)
@@ -22,15 +24,15 @@ public class Board {
 
     @Column(name="content", nullable = false)
     private String content;
-
+    @CreatedDate
     @Column(name="regDate")
     private LocalDateTime regDate;
-
+    @LastModifiedDate
     @Column(name="modDate")
     private LocalDateTime modDate;
 
     @Column(name="writer")
-    private LocalDateTime writer;
+    private String writer;
 
     @Builder
     public Board(String title, String content){
