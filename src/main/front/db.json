@@ -1,4 +1,45 @@
 {
+  "routes": {
+    "/posts/:id": "/posts/:id"
+  },
   "users": [],
-  "posts": []
+  "posts": [
+    {
+      "id": 1,
+      "title": "제목1",
+      "content": "콘텐츠1",
+      "regDate": "2023-03-21",
+      "modDate": "2024-01-23",
+      "writer": "user1"
+    },
+    {
+      "id": 2,
+      "title": "제목2",
+      "content": "콘텐츠2",
+      "regDate": "2023-03-21",
+      "writer": "userasdff"
+    },
+    {
+      "id": 3,
+      "title": "제목3",
+      "content": "콘텐츠3",
+      "regDate": "2023-03-21",
+      "writer": "user3"
+    },
+    {
+      "id": 4,
+      "title": "제목4",
+      "content": "콘텐츠4",
+      "regDate": "2023-04-23",
+      "writer": "user4"
+    },
+    {
+      "id": 5,
+      "title": "제목5",
+      "content": "콘텐츠5",
+      "regDate": "2023-02-26",
+      "modDate": "2023-07-01",
+      "writer": "user5"
+    }
+  ]
 }

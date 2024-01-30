@@ -32,7 +32,7 @@ const SignUp = () => {
     if (!id || id.length < 4) return;
     if (!password || password.length < 4) return;
     if (!checkpassword || checkpassword !== password) return;
-    if (!nickname || nickname.length < 4) return;
+    if (!nickname || nickname.length < 9) return;
 
     console.log(id, password, checkpassword, nickname);
     navigate("/login");
@@ -93,8 +93,8 @@ const SignUp = () => {
             value={nickname}
             onChange={onChange}
             error={
-              submitted && (!nickname || nickname.length < 4)
-                ? "닉네임은 4자 이상으로 입력 해주세요"
+              submitted && (!nickname || nickname.length < 9)
+                ? "닉네임은 9자 이상으로 입력 해주세요"
                 : ""
             }
           />
