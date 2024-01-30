@@ -60,6 +60,7 @@ const BoardList = () => {
               {...item}
               author={item.writer}
               date={item.modDate ? item.modDate : item.regDate}
+              id={item.id}
             />
           ))}
         </tbody>
