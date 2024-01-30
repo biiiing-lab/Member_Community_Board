@@ -1,6 +1,7 @@
 package com.example.member_coummunity_board.Controller;
 
 import com.example.member_coummunity_board.Dto.JoinDto;
+import com.example.member_coummunity_board.Dto.LoginDto;
 import com.example.member_coummunity_board.Service.MemberService;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RequiredArgsConstructor
 @Controller
@@ -38,6 +40,15 @@ public class MemberController {
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginDto loginDto) {
+        try {
+            return memberService.login(loginDto);
+        }catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     // 로그아웃

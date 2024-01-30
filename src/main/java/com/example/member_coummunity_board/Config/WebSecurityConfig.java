@@ -3,10 +3,14 @@ package com.example.member_coummunity_board.Config;
 import com.example.member_coummunity_board.Jwt.JwtProperties;
 import com.example.member_coummunity_board.Service.MemberService;
 import jakarta.servlet.DispatcherType;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Bag;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -27,6 +31,12 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 @EnableWebSecurity
 @EnableMethodSecurity
 public class WebSecurityConfig {
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder =
+                http.getSharedObject(AuthenticationManagerBuilder.class);
+        return authenticationManagerBuilder.build();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -53,7 +63,6 @@ public class WebSecurityConfig {
                         .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)
                         .deleteCookies(JwtProperties.COOKIE_NAME));
-
         return http.build();
     }
 }

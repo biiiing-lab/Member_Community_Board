@@ -6,6 +6,12 @@ import com.example.member_coummunity_board.Entity.Member;
 import com.example.member_coummunity_board.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +24,8 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+
+    private final AuthenticationManager authenticationManager;
 
     @Transactional
     // 회원가입 : 데이터 저장
@@ -33,27 +41,23 @@ public class MemberService {
     }
 
     // 로그인 (반환값 user)
-    public User login(LoginDto loginDto) {
-        Optional<User> optionalUser = memberRepository.findByMember(loginDto.getMemberId());
+    public String login(LoginDto loginDto) throws Exception {
+        // 인증, 권한 부여하기(id, pw)
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginDto.getMemberId(), loginDto.getPassword()));
 
-        if(optionalUser.isEmpty()) {
-            return null;
-        }
-
-        User user = optionalUser.get();
-
-        if(!user.getPassword().equals(loginDto.getPassword())) {
-            return null;
-        }
-
-        return user;
+        // authentication 넣기
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        return userDetails.getUsername();
     }
 
+    /*
     // 스프링 시큐리티에서 memberId로 사용자의 정보를 가져옴
     public User findMember(String memberId){
         return memberRepository.findByMember(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("Unexpected User"));
     }
-
+ */
 
 }

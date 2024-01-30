@@ -29,15 +29,15 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain chain)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
         String token = null;
         try {
             token = Arrays.stream(request.getCookies())
                     .filter(cookie -> cookie.getName().equals(JwtProperties.COOKIE_NAME)).findFirst()
                     .map(Cookie::getValue)
                     .orElse(null);
-        }catch (Exception ignored) {
-            if(token != null) {
+        } catch (Exception ignored) {
+            if (token != null) {
                 try {
                     Authentication authentication = getUsernamePasswordAuthenticationToken(token);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -53,7 +53,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     private Authentication getUsernamePasswordAuthenticationToken(String token) {
         String userName = JwtUtils.getMemberId(token);
-        if(userName != null) {
+        if (userName != null) {
             User user = memberRepository.findByMember(userName);
             return new UsernamePasswordAuthenticationToken(
                     user, null, user.getAuthorities()
