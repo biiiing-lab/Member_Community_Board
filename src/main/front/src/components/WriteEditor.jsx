@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import axios from "axios";
 
-const WriteEditor = ({ type, title: initialTitle, content: initialContent }) => {
+const WriteEditor = ({ type, editTitle, editContent }) => {
+  console.log(editTitle, editContent);
   const navigate = useNavigate();
-  const [title, setTitle] = useState(initialTitle || "");
-  const [content, setContent] = useState(initialContent || "");
+  const [title, setTitle] = useState(editTitle);
+  const [content, setContent] = useState(editContent);
 
+  console.log(title, content);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -19,13 +21,17 @@ const WriteEditor = ({ type, title: initialTitle, content: initialContent }) => 
 
   const handleButtonClick = () => {
     if (type === "write") {
-      axios.get("http://localhost:4000/posts")
-        .then(response => {
+      axios
+        .get("http://localhost:4000/posts")
+        .then((response) => {
           const idNumber = response.data;
-          const nextId = (parseInt(idNumber[idNumber.length - 1].id) + 1).toString();
+          const nextId = (
+            parseInt(idNumber[idNumber.length - 1].id) + 1
+          ).toString();
           const postData = { id: nextId, title, content };
 
-          axios.post("http://localhost:4000/posts", postData)
+          axios
+            .post("http://localhost:4000/posts", postData)
             .then((res) => {
               navigate("/", { replace: true });
             })
@@ -33,12 +39,11 @@ const WriteEditor = ({ type, title: initialTitle, content: initialContent }) => 
               console.error(error);
             });
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     }
   };
-
 
   return (
     <div className="max-w-5xl mx-auto mt-10">
