@@ -11,8 +11,7 @@ const Button = ({ value, onClick, type }) => {
         " bg-white border border-indigo-500 hover:bg-indigo-50 text-indigo-500";
       break;
     case "tertiary":
-      buttonClassName +=
-        " bg-transparent text-indigo-500 underline decoration-1";
+      buttonClassName += " bg-transparent text-gray-400 py-2";
       break;
     default:
     //   buttonClassName += " bg-indigo-600 hover:bg-indigo-700 text-gray-50";

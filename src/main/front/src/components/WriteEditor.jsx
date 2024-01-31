@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 
-const WriteEditor = ({ type, title: initialTitle, content: initialContent }) => {
+const WriteEditor = ({ type, editTitle, editContent }) => {
+  console.log(editTitle, editContent);
   const navigate = useNavigate();
-  const [title, setTitle] = useState(initialTitle || "");
-  const [content, setContent] = useState(initialContent || "");
+  const [title, setTitle] = useState(editTitle);
+  const [content, setContent] = useState(editContent);
+
+  console.log(title, content);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -16,7 +19,6 @@ const WriteEditor = ({ type, title: initialTitle, content: initialContent }) => 
   };
 
   const handleButtonClick = () => {
-    
     navigate("/");
   };
 
