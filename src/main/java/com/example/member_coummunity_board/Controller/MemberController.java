@@ -18,34 +18,16 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    /** 회원가입 **/
     // 회원가입 페이지 출력
     @GetMapping("/SignUp")
     public String join() {
         return "SignUp";
     }
 
-    // 회원가입 로직
-    @PostMapping("/SignUp")
-    public String join(@ModelAttribute JoinDto joinDto) {
-        memberService.joinMember(joinDto);
-        return "redirect:Login"; // 회원가입 후 로그인 페이지로 이동
-    }
-
-    /** 로그인 **/
     // 로그인 페이지 출력
     @GetMapping("/Login")
     public String login() {
         return "Login";
-    }
-
-    @PostMapping("/Login")
-    public String login(@RequestBody LoginDto loginDto) {
-        try {
-            return memberService.login(loginDto);
-        }catch (Exception e) {
-            return e.getMessage();
-        }
     }
 
     // 로그아웃
