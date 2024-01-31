@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ListItem from "./ListItem";
+import Pagination from "../components/Pagination";
 
 const BoardList = () => {
   const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(8);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +23,12 @@ const BoardList = () => {
 
     fetchData();
   }, []);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <>
       <table className="table-auto border-collapse w-full">
@@ -36,7 +45,7 @@ const BoardList = () => {
           </tr>
         </thead>
         <tbody className="text-sm font-normal text-gray-700">
-          {data.map((item, index) => (
+          {currentItems.map((item, index) => (
             <ListItem
               key={index}
               {...item}
@@ -47,6 +56,12 @@ const BoardList = () => {
           ))}
         </tbody>
       </table>
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        totalItems={data.length}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
     </>
   );
 };
