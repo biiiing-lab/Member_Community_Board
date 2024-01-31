@@ -44,13 +44,4 @@ public class CorsSecurityConfig {
         source.registerCorsConfiguration("/**",config);
         return new CorsFilter(source);
     }
-
-    @Bean // filter 추가
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .addFilter(corsFilter());
-
-        return httpSecurity.build();
-
-    }
 }
