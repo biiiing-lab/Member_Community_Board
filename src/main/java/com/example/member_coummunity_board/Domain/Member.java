@@ -1,4 +1,4 @@
-package com.example.member_coummunity_board.Entity;
+package com.example.member_coummunity_board.Domain;
 
 
 import jakarta.persistence.*;
@@ -10,13 +10,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @ToString
 @Table(name = "Member")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Builder
 public class Member {
 

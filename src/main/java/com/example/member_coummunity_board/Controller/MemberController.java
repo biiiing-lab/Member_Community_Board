@@ -51,14 +51,11 @@ public class MemberController {
     // 로그아웃
     @GetMapping("/logout")
     public String logout(HttpServletRequest request,HttpServletResponse response) {
-        new SecurityContextLogoutHandler().logout(request, response,
-                SecurityContextHolder.getContext().getAuthentication());
+        new SecurityContextLogoutHandler()
+                .logout(request, response,
+                        SecurityContextHolder
+                                .getContext()
+                                .getAuthentication());
         return "redirect:/Login";
-    }
-
-    // 로그인 로직
-    @GetMapping("/mypage/{memberId}")
-    public String mypage() {
-        return "MyPage"; // 개인 페이지
     }
 }

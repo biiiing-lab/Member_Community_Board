@@ -2,11 +2,9 @@ package com.example.member_coummunity_board.Service;
 
 import com.example.member_coummunity_board.DTO.JoinDto;
 import com.example.member_coummunity_board.DTO.LoginDto;
-import com.example.member_coummunity_board.Entity.Member;
+import com.example.member_coummunity_board.Domain.Member;
 import com.example.member_coummunity_board.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,8 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
