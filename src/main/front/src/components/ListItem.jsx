@@ -19,7 +19,8 @@ const ListItem = ({ title, author, date, content, id }) => {
       className="hover:bg-gray-50 border-b border-b-gray-100 cursor-pointer"
       onClick={handlePostClick}
     >
-      <td className="px-4 py-4 flex items-center">{title}</td>
+      <td className="px-4 py-4">{id}</td>
+      <td className="px-4 py-4">{title}</td>
       <td className="px-4 py-4">{author}</td>
       <td className="px-4 py-4">{date}</td>
     </tr>
