@@ -6,6 +6,7 @@ import io.jsonwebtoken.JwsHeader;
 import io.jsonwebtoken.Jwts;
 import org.springframework.data.util.Pair;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.security.Key;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class JwtUtils {
     }
 
     // user로 토큰 생성
-    public static String createToken(User user) {
+    public static String createToken(UserDetails user) {
         Claims claims = Jwts.claims().setSubject(user.getUsername());
         Date now = new Date();
         Pair<String, Key> key = JwtKey.getRandomKey();
