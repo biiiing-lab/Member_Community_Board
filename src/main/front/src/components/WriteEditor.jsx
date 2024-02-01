@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "./Button";
 import axios from "axios";
 
@@ -8,7 +8,7 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
   const navigate = useNavigate();
   const [title, setTitle] = useState(editTitle);
   const [content, setContent] = useState(editContent);
-
+  const { id } = useParams();
   console.log(title, content);
   const date = new Date();
   const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
@@ -35,7 +35,14 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
           const nextId = (
             parseInt(idNumber[idNumber.length - 1].id) + 1
           ).toString();
-          const postData = { id: nextId, title, content, regDate: dateStr };
+          console.log(nextId);
+          const postData = {
+            id: nextId,
+            writer: "임시의유저",
+            title,
+            content,
+            regDate: dateStr,
+          };
 
           axios
             .post("http://localhost:4000/posts", postData)
@@ -49,6 +56,24 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
         })
         .catch((error) => {
           console.error(error);
+        });
+    } else if (type === "edit") {
+      const postData = {
+        id: id,
+        writer: "임시의유저",
+        title,
+        content,
+        modDate: dateStr,
+      };
+
+      axios
+        .put(`http://localhost:4000/posts/${id}`, postData)
+        .then((res) => {
+          console.log("수정 성공");
+          navigate(-1);
+        })
+        .catch((error) => {
+          console.log(error);
         });
     }
   };
