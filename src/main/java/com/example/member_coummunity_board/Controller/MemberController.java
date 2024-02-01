@@ -34,37 +34,8 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.CREATED).body(successMember);
     }
 
-    /* @PostMapping("/api/SignUp")
-    public String join(@ModelAttribute JoinDto joinDto) {
-        memberService.joinMember(joinDto);
-        return "redirect:Login"; // 회원가입 후 로그인 페이지로 이동
-    }
-
-    @PostMapping("/api/Login")
-    public String login(@RequestBody LoginDto loginDto) {
-        try {
-            return memberService.login(loginDto);
-        }catch (Exception e) {
-            return e.getMessage();
-        }
-    }
-
-    // 회원가입 페이지 출력
-    @GetMapping("/SignUp")
-    public String join() {
-        return "SignUp";
-    }
-
-    // 로그인 페이지 출력
-    @GetMapping("/Login")
-    public String login() {
-        return "Login";
-    }
-
-    */
-
     // 로그아웃
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public String logout(HttpServletRequest request,HttpServletResponse response) {
         new SecurityContextLogoutHandler()
                 .logout(request, response,

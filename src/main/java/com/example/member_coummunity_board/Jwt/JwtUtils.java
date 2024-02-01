@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.security.Key;
 import java.util.Date;
 public class JwtUtils {
+
     // 토큰에서 memberId 찾기 - return memberId
     public static String getMemberId(String token) {
         return Jwts.parserBuilder()
