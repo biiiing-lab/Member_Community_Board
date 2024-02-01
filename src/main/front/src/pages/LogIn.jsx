@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
+import axios from "axios";
+
 const LogIn = () => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+  const [id, setId] = useState("test1");
+  const [password, setPassword] = useState("test1234");
 
   const navigate = useNavigate();
 
@@ -19,8 +20,20 @@ const LogIn = () => {
     }
   };
 
-  const onSubmitClick = () => {
-    console.log(id, password);
+  const onSubmitClick = async () => {
+    if (!id || !password) return;
+
+    await axios
+      .post("http://localhost:8080/Login", {
+        memberId: id,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     navigate("/");
   };
 
@@ -46,6 +59,7 @@ const LogIn = () => {
             onChange={onChange}
           />
           <TextInput
+            type={"password"}
             placeholder={"비밀번호를 입력해주세요"}
             name="password"
             value={password}

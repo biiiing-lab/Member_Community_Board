@@ -96,7 +96,7 @@ const View = () => {
                 <div className="text-gray-400 text-sm ml-1">{data.regDate}</div>
                 {data.modDate ? (
                   <div className="text-gray-400 text-sm ml-1">
-                    | 마지막 수정 날짜: {data.modDate}
+                    마지막 수정 날짜: {data.modDate}
                   </div>
                 ) : (
                   ""

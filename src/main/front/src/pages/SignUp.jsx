@@ -42,7 +42,7 @@ const SignUp = () => {
     console.log(id, password, checkpassword, nickname);
 
     await axios
-      .post("http://localhost:8080/SignUp", {
+      .post("/SignUp", {
         memberId: id,
         password: password,
         email: email,
