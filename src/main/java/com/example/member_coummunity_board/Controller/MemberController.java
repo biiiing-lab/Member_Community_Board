@@ -26,7 +26,7 @@ public class MemberController {
             return "src/main/front/src/pages/LogIn.jsx";
         } catch (Exception e) {
             e.getMessage();
-            return "src/main/front/src/pages/LogIn.jsx";
+            return "src/main/front/src/pages/SignUp.jsx";
         }
     }
 
