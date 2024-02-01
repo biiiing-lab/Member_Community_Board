@@ -30,6 +30,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.security.PublicKey;
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+import static org.springframework.security.config.http.MatcherType.ant;
 
 @Configuration
 @EnableWebSecurity
@@ -71,6 +72,7 @@ public class WebSecurityConfig {
                         .logoutSuccessUrl("/Login")
                         .invalidateHttpSession(true)
                         .deleteCookies(JwtProperties.COOKIE_NAME));
+
         return http.build();
     }
 }
