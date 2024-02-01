@@ -37,11 +37,18 @@ const BoardList = () => {
             className="w-full rounded text-sm font-medium text-gray-700 text-left border-t-2 border-b"
             style={{ fontSize: "0.9674rem" }}
           >
-            <th className="w-3/4 px-4 py-2">
-              <p className="w-100">제목</p>
+            <th className="px-4 py-2" style={{ width: "10%" }}>
+              번호
             </th>
-            <th className="px-4 py-2">작성자</th>
-            <th className=" px-4">작성일</th>
+            <th className="px-4 py-2" style={{ width: "60%" }}>
+              제목
+            </th>
+            <th className="px-4 py-2" style={{ width: "15%" }}>
+              작성자
+            </th>
+            <th className="px-4 py-2" style={{ width: "15%" }}>
+              작성일
+            </th>
           </tr>
         </thead>
         <tbody className="text-sm font-normal text-gray-700">

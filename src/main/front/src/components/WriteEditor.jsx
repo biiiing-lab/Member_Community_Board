@@ -10,6 +10,11 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
   const [content, setContent] = useState(editContent);
 
   console.log(title, content);
+  const date = new Date();
+  const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+    2,
+    "0"
+  )}-${String(date.getDate()).padStart(2, "0")}`;
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -19,7 +24,9 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
     setContent(e.target.value);
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (e) => {
+    e.preventDefault();
+
     if (type === "write") {
       axios
         .get("http://localhost:4000/posts")
@@ -28,12 +35,13 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
           const nextId = (
             parseInt(idNumber[idNumber.length - 1].id) + 1
           ).toString();
-          const postData = { id: nextId, title, content };
+          const postData = { id: nextId, title, content, regDate: dateStr };
 
           axios
             .post("http://localhost:4000/posts", postData)
             .then((res) => {
-              navigate("/", { replace: true });
+              navigate("/");
+              console.log("글쓰기 성공");
             })
             .catch((error) => {
               console.error(error);
@@ -49,6 +57,10 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
     <div className="max-w-5xl mx-auto mt-10">
       <div className="text-2xl font-bold mb-5">
         {type === "write" ? "게시글 작성" : "게시글 수정"}
+      </div>
+      <div className="mb-4 flex">
+        <div className="text-gray-400 text-sm">작성자이름 |</div>
+        <div className="text-gray-400 text-sm ml-1">{dateStr}</div>
       </div>
       <form>
         <div className="mb-4 w-full rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
