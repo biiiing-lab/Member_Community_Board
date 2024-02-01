@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.userdetails.UserDetails;
-
 
 
 @Getter
@@ -15,18 +13,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 @NoArgsConstructor
 public class MemberResponseDto {
     private String memberId;
-    private String username;
+    private String password;
 
     @Builder
-    public MemberResponseDto(String memberId, String username) {
+    public MemberResponseDto(String memberId, String password) {
         this.memberId = memberId;
-        this.username = username;
+        this.password = password;
     }
 
     public static MemberResponseDto toDto(Member member) {
         return MemberResponseDto.builder()
                 .memberId(member.getMemberId())
-                .username(member.getMemberName())
+                .password(member.getPassword())
                 .build();
     }
 }
