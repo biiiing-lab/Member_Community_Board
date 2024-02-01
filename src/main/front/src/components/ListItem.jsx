@@ -20,7 +20,11 @@ const ListItem = ({ title, author, date, content, id }) => {
       onClick={handlePostClick}
     >
       <td className="px-4 py-4">{id}</td>
-      <td className="px-4 py-4">{title}</td>
+      <td className="px-4 py-4">
+        <div className="truncate" style={{ maxWidth: "32rem" }}>
+          {title}
+        </div>
+      </td>
       <td className="px-4 py-4">{author}</td>
       <td className="px-4 py-4">{date}</td>
     </tr>

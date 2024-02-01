@@ -1,4 +1,12 @@
-const TextInput = ({ placeholder, name, value, onChange, error, type }) => {
+const TextInput = ({
+  placeholder,
+  name,
+  value,
+  onChange,
+  error,
+  type,
+  onKeyDown,
+}) => {
   if (!type) type = "text";
 
   return (
@@ -12,6 +20,7 @@ const TextInput = ({ placeholder, name, value, onChange, error, type }) => {
         value={value}
         placeholder={placeholder}
         onChange={onChange}
+        onKeyDown={onKeyDown}
       />
       {error && <p className="text-red-500 text-xs">{error}</p>}
     </>
