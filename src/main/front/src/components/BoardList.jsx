@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ListItem from "./ListItem";
 import Pagination from "../components/Pagination";
+import TextInput from "../components/TextInput";
 
 const BoardList = () => {
   const [data, setData] = useState([]);
@@ -11,7 +12,8 @@ const BoardList = () => {
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:4000/posts`)
+        .get(`http://localhost:8080/api/boards`)
+        // .get(`http://localhost:4000/posts`)
         .then((res) => {
           console.log("불러오기 성공!");
           setData(res.data);
