@@ -1,6 +1,6 @@
 package com.example.member_coummunity_board.Controller;
 
-import com.example.member_coummunity_board.DTO.MemberJoinDto;
+
 import com.example.member_coummunity_board.DTO.MemberLoginDto;
 import com.example.member_coummunity_board.DTO.MemberResponseDto;
 import com.example.member_coummunity_board.Domain.Member;
