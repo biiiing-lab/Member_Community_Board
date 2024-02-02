@@ -1,6 +1,6 @@
 package com.example.member_coummunity_board.Controller;
 
-
+import com.example.member_coummunity_board.DTO.MemberJoinDto;
 import com.example.member_coummunity_board.DTO.MemberLoginDto;
 import com.example.member_coummunity_board.DTO.MemberResponseDto;
 import com.example.member_coummunity_board.Domain.Member;
@@ -20,7 +20,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping(value = "/SignUp")
-    public String signUp(MemberJoinDto memberJoinDto) {
+    public String signUp(@RequestBody MemberJoinDto memberJoinDto) {
         try {
             memberService.joinMember(memberJoinDto);
             return "src/main/front/src/pages/LogIn.jsx";
