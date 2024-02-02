@@ -31,13 +31,22 @@ public class MemberService {
 
     // 로그인
     public boolean login(MemberLoginDto memberLoginDto) {
-        MemberResponseDto entity = memberRepository.findByMemberIdAndPassword(memberLoginDto.getMemberId(), memberLoginDto.getPassword());
-        if(entity.getMemberId().equals(memberLoginDto.getMemberId())
-                && entity.getPassword().equals(memberLoginDto.getPassword())) {
-            return true;
+
+        String memberId = memberRepository.findByMemberId(memberLoginDto.getMemberId());
+        String password = memberRepository.findByPassword(memberLoginDto.getPassword());
+
+        if(!memberId.isEmpty() || !password.isEmpty()) {
+
+            try {
+                if (memberId.equals(memberLoginDto.getMemberId()) && password.equals(memberLoginDto.getPassword())) {
+                    return true;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return false;
+            }
         }
-        else {
-            return false;
-        }
+
+        return false;
     }
 }

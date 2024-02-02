@@ -21,7 +21,7 @@ import java.util.Iterator;
 
 @RequiredArgsConstructor
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class MemberController {
     private final MemberService memberService;
 
@@ -39,9 +39,9 @@ public class MemberController {
     @PostMapping("/Login")
     public ResponseEntity<String> Login(@RequestBody MemberLoginDto memberLoginDto) {
         if (memberService.login(memberLoginDto)) {
-            return ResponseEntity.ok("Login successful");
+            return ResponseEntity.ok(memberLoginDto.getMemberId());
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("bad request");
+            return ResponseEntity.badRequest().body("bad request");
         }
     }
 }
