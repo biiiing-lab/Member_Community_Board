@@ -5,6 +5,7 @@ import com.example.member_coummunity_board.DTO.MemberLoginDto;
 import com.example.member_coummunity_board.DTO.MemberResponseDto;
 import com.example.member_coummunity_board.Domain.Member;
 import com.example.member_coummunity_board.Repository.MemberRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,14 @@ public class MemberService {
     }
 
     // 로그인
-    public MemberResponseDto login(MemberLoginDto memberLoginDto) {
-        MemberResponseDto entity = memberRepository.findByMemberIdAndPassword(
-                memberLoginDto.getMemberId(),
-                memberLoginDto.getPassword()
-        );
-        return entity;
+    public boolean login(MemberLoginDto memberLoginDto) {
+        MemberResponseDto entity = memberRepository.findByMemberIdAndPassword(memberLoginDto.getMemberId(), memberLoginDto.getPassword());
+        if(entity.getMemberId().equals(memberLoginDto.getMemberId())
+                && entity.getPassword().equals(memberLoginDto.getPassword())) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
