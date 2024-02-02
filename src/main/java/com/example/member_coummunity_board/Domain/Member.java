@@ -3,6 +3,7 @@ package com.example.member_coummunity_board.Domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-@Table(name = "Member")
+@Table
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
@@ -33,9 +34,7 @@ public class Member {
     @Column(nullable = false)
     private String email;
 
-    // 가입 시간
-    @Column(columnDefinition = "datetime default CURRENT_TIMESTAMP")
-    @CreatedDate
+    @CreationTimestamp
     private LocalDateTime regDate;
 
 }

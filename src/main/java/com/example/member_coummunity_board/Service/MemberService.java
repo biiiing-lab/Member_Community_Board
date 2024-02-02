@@ -26,7 +26,6 @@ public class MemberService {
                 .build();
 
         memberRepository.save(member);
-
     }
 
     // 로그인

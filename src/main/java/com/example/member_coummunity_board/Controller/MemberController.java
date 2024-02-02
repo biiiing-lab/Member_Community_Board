@@ -20,7 +20,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping(value = "/SignUp")
-    public String signUp(MemberJoinDto memberJoinDto) {
+    public String signUp(@RequestBody MemberJoinDto memberJoinDto) {
         try {
             memberService.joinMember(memberJoinDto);
             return "src/main/front/src/pages/LogIn.jsx";
