@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
+
 @CrossOrigin
+
 @RestController //http 응답으로 객체 데이터를 json 형태로 변환
 public class BoardApiController {
     private final BoardService boardService;
