@@ -25,25 +25,19 @@ import java.util.Iterator;
 public class MemberController {
     private final MemberService memberService;
 
-    @PostMapping(value = "/SignUp")
-    public String signUp(@RequestBody MemberJoinDto memberJoinDto) {
-        try {
-            memberService.joinMember(memberJoinDto);
-            return "src/main/front/src/pages/LogIn.jsx";
-        } catch (Exception e) {
-            e.getMessage();
-            return "src/main/front/src/pages/SignUp.jsx";
-        }
+    @PostMapping( "/SignUp")
+    public void signUp(@RequestBody MemberJoinDto memberJoinDto) {
+      memberService.joinMember(memberJoinDto);
     }
 
-    @PostMapping("/Login")
+    /*@PostMapping("/Login")
     public ResponseEntity<String> Login(@RequestBody MemberLoginDto memberLoginDto) {
         if (memberService.login(memberLoginDto)) {
             return ResponseEntity.ok(memberLoginDto.getMemberId());
         } else {
             return ResponseEntity.badRequest().body("bad request");
         }
-    }
+    } */
 }
     /*
     @PostMapping("/SignUp")
