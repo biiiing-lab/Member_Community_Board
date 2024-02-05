@@ -12,7 +12,10 @@ const ListItem = ({ title, author, date, content, id }) => {
 
   const handlePostClick = () => {
     navigate(`/view/${id}`);
+    
   };
+
+
 
   return (
     <tr

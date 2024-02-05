@@ -13,7 +13,6 @@ const BoardList = () => {
     const fetchData = async () => {
       await axios
         .get(`http://localhost:8080/api/boards`)
-        // .get(`http://localhost:4000/posts`)
         .then((res) => {
           console.log("불러오기 성공!");
           setData(res.data);

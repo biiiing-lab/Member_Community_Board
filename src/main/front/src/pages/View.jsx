@@ -8,14 +8,15 @@ const View = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState([]);
+  
 
   useEffect(() => {
     const fetchData = async () => {
       await axios
-        .get(`http://localhost:4000/posts/${id}`)
-        .then((res) => {
+        .get(`http://localhost:8080/api/boards/${id}`)
+        .then((response) => {
           console.log("불러오기 성공!");
-          setData(res.data);
+          setData(Response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -25,15 +26,16 @@ const View = () => {
     fetchData();
   }, [id]);
 
+  console.log(data)
+
   const onEditButtonClick = () => {
     console.log(id);
     navigate(`/edit/${id}`);
   };
   const onDeleteButtonClick = async () => {
     await axios
-      .delete(`http://localhost:4000/posts/${id}`)
+      .delete(`http://localhost:8080/api/boards/${id}`)
       .then((res) => {
-        console.log("삭제성공!");
         navigate("/");
       })
       .catch((error) => {

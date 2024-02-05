@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "./Button";
 import axios from "axios";
+import DateComponent from "./Date";
 
 const WriteEditor = ({ type, editTitle, editContent }) => {
   console.log(editTitle, editContent);
@@ -10,11 +11,6 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
   const [content, setContent] = useState(editContent);
   const { id } = useParams();
   console.log(title, content);
-  const date = new Date();
-  const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
-    2,
-    "0"
-  )}-${String(date.getDate()).padStart(2, "0")}`;
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -29,25 +25,24 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
 
     if (type === "write") {
       axios
-        .get("http://localhost:4000/posts")
+        .get("http://localhost:8080/api/boards")
         .then((response) => {
-          const idNumber = response.data;
-          const nextId = (
-            parseInt(idNumber[idNumber.length - 1].id) + 1
-          ).toString();
-          console.log(nextId);
+          // const idNumber = response.data;
+          // const nextId = (
+          //   parseInt(idNumber[idNumber.length - 1].id) + 1
+          // ).toString();
+          // console.log(nextId);
           const postData = {
-            id: nextId,
+            // id: nextId,
             writer: "임시의유저",
             title,
             content,
-            regDate: dateStr,
           };
 
           axios
-            .post("http://localhost:4000/posts", postData)
+            .post("http://localhost:8080/api/boards", postData)
             .then((res) => {
-              navigate("/");
+              navigate('/');
               console.log("글쓰기 성공");
             })
             .catch((error) => {
@@ -59,15 +54,15 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
         });
     } else if (type === "edit") {
       const postData = {
-        id: id,
+        // id: id,
         writer: "임시의유저",
         title,
         content,
-        modDate: dateStr,
+       
       };
 
       axios
-        .put(`http://localhost:4000/posts/${id}`, postData)
+        .put(`http://localhost:8080/api/boards/${id}`, postData)
         .then((res) => {
           console.log("수정 성공");
           navigate(-1);
@@ -85,7 +80,7 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
       </div>
       <div className="mb-4 flex">
         <div className="text-gray-400 text-sm">작성자이름 |</div>
-        <div className="text-gray-400 text-sm ml-1">{dateStr}</div>
+        <div className="text-gray-400 text-sm ml-1"><DateComponent/></div>
       </div>
       <form>
         <div className="mb-4 w-full rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
