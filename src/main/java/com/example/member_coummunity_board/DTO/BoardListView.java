@@ -12,13 +12,15 @@ public class BoardListView {
     private final Long id;
     private final String title;
     private final String content;
-    private final LocalDateTime regDate;
+    //private final String writer;
+   // private final LocalDateTime regDate;
 
 
     public BoardListView(Board board){
         this.id = board.getId();
         this.title = board.getTitle();
         this.content = board.getContent();
-        this.regDate = board.getRegDate();
+      //  this.writer = board.getWriter();
+      //  this.regDate = board.getRegDate();
     }
 }

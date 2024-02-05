@@ -16,6 +16,7 @@ const BoardList = () => {
         .then((res) => {
           console.log("불러오기 성공!");
           setData(res.data);
+          console.log(res.data);
         })
         .catch((error) => {
           console.log(error);
