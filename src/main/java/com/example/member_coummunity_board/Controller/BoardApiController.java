@@ -12,10 +12,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RequiredArgsConstructor
+
+@CrossOrigin
+
 @RestController //http 응답으로 객체 데이터를 json 형태로 변환
 public class BoardApiController {
     private final BoardService boardService;
+
 
     @PostMapping("/api/boards") // method가 post형식의 /api/boards/ 요청이 들어오면 실행
     public ResponseEntity<Board> addBoard(@RequestBody AddBoard request){
