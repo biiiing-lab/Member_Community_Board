@@ -21,7 +21,7 @@ import java.util.Iterator;
 
 @RequiredArgsConstructor
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class MemberController {
     private final MemberService memberService;
 
