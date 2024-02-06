@@ -6,7 +6,7 @@ import axios from "axios";
 
 const LogIn = () => {
   const [id, setId] = useState("test1");
-  const [password, setPassword] = useState("test1234");
+  const [password, setPassword] = useState("test1");
 
   const navigate = useNavigate();
 
@@ -20,21 +20,47 @@ const LogIn = () => {
     }
   };
 
+  const receivedToken = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/Login",
+        {
+          memberId: id,
+          password: password,
+        }
+        // {
+        //   withCredentials: true,
+        // }
+      );
+      console.log(response.data.token);
+      return response.data.token;
+    } catch (error) {
+      console.error("토큰 fetch 오류:", error);
+      throw error;
+    }
+  };
+
   const onSubmitClick = async () => {
     if (!id || !password) return;
+    // await axios
+    //   .post("http://localhost:8080/Login", {
+    //     memberId: id,
+    //     password: password,
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
 
-    await axios
-      .post("http://localhost:8080/Login", {
-        memberId: id,
-        password: password,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    navigate("/");
+    try {
+      const token = await receivedToken();
+      localStorage.setItem("access_token", token);
+      navigate("/");
+    } catch (error) {
+      console.error("토큰 setting 오류 ", error);
+    }
   };
 
   return (
