@@ -44,7 +44,7 @@ public class WebConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterCh
         web.ignoring().requestMatchers("/h2-console/**");
     }
 
-    /*
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -64,7 +64,7 @@ public class WebConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterCh
         configuration.addAllowedHeader("*");
         source.registerCorsConfiguration("/**", configuration);
         return new CorsFilter(source);
-    } */
+    }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
