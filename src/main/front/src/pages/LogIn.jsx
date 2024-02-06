@@ -22,20 +22,14 @@ const LogIn = () => {
 
   const receivedToken = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/Login",
-        {
-          memberId: id,
-          password: password,
-        }
-        // {
-        //   withCredentials: true,
-        // }
-      );
-      console.log(response.data.token);
-      return response.data.token;
+      const response = await axios.post("http://localhost:8080/Login", {
+        memberId: id,
+        password: password,
+      });
+      console.log(response.status);
+      return response.status;
     } catch (error) {
-      console.error("토큰 fetch 오류:", error);
+      console.error(" status fetch 오류:", error);
       throw error;
     }
   };
@@ -55,11 +49,13 @@ const LogIn = () => {
     //   });
 
     try {
-      const token = await receivedToken();
-      localStorage.setItem("access_token", token);
+      // const token = await receivedToken();
+      // localStorage.setItem("access_token", token);
+
+      receivedToken();
       navigate("/");
     } catch (error) {
-      console.error("토큰 setting 오류 ", error);
+      console.error("status setting 오류 ", error);
     }
   };
 
