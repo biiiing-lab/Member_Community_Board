@@ -8,7 +8,6 @@ const View = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState([]);
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +15,7 @@ const View = () => {
         .get(`http://localhost:8080/api/boards/${id}`)
         .then((response) => {
           console.log("불러오기 성공!");
-          setData(Response.data);
+          setData(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -26,7 +25,7 @@ const View = () => {
     fetchData();
   }, [id]);
 
-  console.log(data)
+  console.log(data);
 
   const onEditButtonClick = () => {
     console.log(id);
