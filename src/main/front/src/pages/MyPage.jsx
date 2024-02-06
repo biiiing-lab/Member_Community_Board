@@ -10,7 +10,9 @@ const MyPage = () => {
             <span className="font-bold mr-2">유저네임</span>
             <span>test</span>
           </div>
-          <Button value="로그아웃" type="tertiary" />
+          <div className="w-20">
+            <Button value="로그아웃" type="tertiary" />
+          </div>
         </div>
       </div>
       <div className="bg-white mt-10 spb-4 mx-auto rounded max-w-5xl	">

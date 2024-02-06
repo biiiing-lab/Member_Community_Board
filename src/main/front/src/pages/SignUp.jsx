@@ -14,6 +14,12 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
+  const date = new Date();
+  const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+    2,
+    "0"
+  )}-${String(date.getDate()).padStart(2, "0")}`;
+
   const onChange = (e) => {
     const { name, value } = e.target;
 
@@ -47,6 +53,7 @@ const SignUp = () => {
         password: password,
         email: email,
         memberName: nickname,
+        regDate: dateStr,
       })
       .then((res) => {
         console.log(res);
