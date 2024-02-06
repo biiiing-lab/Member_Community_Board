@@ -40,7 +40,7 @@ public class MemberController {
             return "src/main/front/src/pages/SignUp.jsx";
         }
     }
-
+/*
     @PostMapping("/Login")
     public ResponseEntity<String> Login(@RequestBody MemberLoginDto memberLoginDto,
                                         HttpServletResponse response) {
@@ -57,7 +57,7 @@ public class MemberController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
         }
-    }
+    } */
 
     @GetMapping("/Secured")
     public ResponseEntity<?> securedEndpoint(@CookieValue(name = "access_token", required = false) String token) {

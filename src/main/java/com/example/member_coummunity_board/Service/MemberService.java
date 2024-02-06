@@ -29,24 +29,4 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-    // 로그인
-    public boolean login(MemberLoginDto memberLoginDto) {
-
-        String memberId = memberRepository.findByMemberId(memberLoginDto.getMemberId());
-        String password = memberRepository.findByPassword(memberLoginDto.getPassword());
-
-        if(!memberId.isEmpty() || !password.isEmpty()) {
-
-            try {
-                if (memberId.equals(memberLoginDto.getMemberId()) && password.equals(memberLoginDto.getPassword())) {
-                    return true;
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                return false;
-            }
-        }
-
-        return false;
-    }
 }
