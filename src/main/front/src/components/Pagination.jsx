@@ -35,8 +35,9 @@ const Pagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
           </svg>
         </p>
 
-        {pageNumbers.map((number) => (
+        {pageNumbers.map((number, index) => (
           <p
+            key={index}
             className={`leading-relaxed cursor-pointer px-2 mx-1 text-sm hover:text-indigo-600 rounded hover:border-indigo-200 ${
               currentPage === number ? `bg-indigo-400 text-white` : ``
             }`}

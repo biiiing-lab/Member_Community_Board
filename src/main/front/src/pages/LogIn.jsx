@@ -6,7 +6,7 @@ import axios from "axios";
 
 const LogIn = () => {
   const [id, setId] = useState("test1");
-  const [password, setPassword] = useState("test1234");
+  const [password, setPassword] = useState("test1");
 
   const navigate = useNavigate();
 
@@ -20,21 +20,43 @@ const LogIn = () => {
     }
   };
 
-  const onSubmitClick = async () => {
-    if (!id || !password) return;
-
-    await axios
-      .post("http://localhost:8080/Login", {
+  const receivedToken = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/Login", {
         memberId: id,
         password: password,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
       });
-    navigate("/");
+      console.log(response.status);
+      return response.status;
+    } catch (error) {
+      console.error(" status fetch 오류:", error);
+      throw error;
+    }
+  };
+
+  const onSubmitClick = async () => {
+    if (!id || !password) return;
+    // await axios
+    //   .post("http://localhost:8080/Login", {
+    //     memberId: id,
+    //     password: password,
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    try {
+      // const token = await receivedToken();
+      // localStorage.setItem("access_token", token);
+
+      receivedToken();
+      navigate("/");
+    } catch (error) {
+      console.error("status setting 오류 ", error);
+    }
   };
 
   return (
