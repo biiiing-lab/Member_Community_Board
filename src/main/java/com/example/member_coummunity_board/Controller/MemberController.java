@@ -3,6 +3,8 @@ package com.example.member_coummunity_board.Controller;
 import com.example.member_coummunity_board.DTO.MemberJoinDto;
 import com.example.member_coummunity_board.DTO.MemberLoginDto;
 import com.example.member_coummunity_board.DTO.MemberResponseDto;
+import com.example.member_coummunity_board.Domain.Member;
+import com.example.member_coummunity_board.Repository.MemberRepository;
 import com.example.member_coummunity_board.Service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -10,15 +12,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.Group;
 import org.apache.catalina.Role;
-import org.apache.catalina.User;
 import org.apache.catalina.UserDatabase;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -26,6 +30,7 @@ import java.util.Iterator;
 public class MemberController {
 
     private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
     @PostMapping( value = "/SignUp")
     public void signUp(@RequestBody MemberJoinDto memberJoinDto) {
@@ -35,9 +40,10 @@ public class MemberController {
     @PostMapping("/Login")
     public ResponseEntity<String> Login(@RequestBody MemberLoginDto memberLoginDto) {
         if(memberService.login(memberLoginDto)) {
-            return ResponseEntity.ok("login successful");
+            String memberName = memberService.findByNickName(memberLoginDto);
+            return ResponseEntity.ok().body(memberName);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
+            return ResponseEntity.ok().body("오류");
         }
     }
 
