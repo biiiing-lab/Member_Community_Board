@@ -1,7 +1,11 @@
 import { Outlet, useNavigate } from "react-router-dom";
+import { getLoginCookie } from "../utils/cookieUtils";
+import { useEffect, useState } from "react";
 
 const Skeleton = () => {
+  const cookieUser = getLoginCookie();
   const navigate = useNavigate();
+
   return (
     <>
       <div className="flex flex-wrap -mx-3 w-full border-b mx-auto ">
@@ -36,7 +40,7 @@ const Skeleton = () => {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="ml-2">user</span>
+                <span className="ml-2">{cookieUser}</span>
               </button>
             </div>
           </div>

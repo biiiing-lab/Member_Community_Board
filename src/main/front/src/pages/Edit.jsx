@@ -12,7 +12,7 @@ const Edit = () => {
   useEffect(() => {
     const fetchData = () => {
       axios
-        .get(`http://localhost:4000/posts/${id}`)
+        .get(`http://localhost:8080/api/boards/${id}`)
         .then((res) => {
           console.log("불러오기 성공!");
           setData(res.data);

@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 import axios from "axios";
+import { setLoginCookie } from "../utils/cookieUtils";
 
 const LogIn = () => {
   const [id, setId] = useState("test1");
-  const [password, setPassword] = useState("test1234");
+  const [password, setPassword] = useState("test1");
 
   const navigate = useNavigate();
 
@@ -20,21 +21,28 @@ const LogIn = () => {
     }
   };
 
-  const onSubmitClick = async () => {
-    if (!id || !password) return;
-
-    await axios
-      .post("http://localhost:8080/Login", {
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/Login", {
         memberId: id,
         password: password,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
       });
-    navigate("/");
+      setLoginCookie({ userName: response.data });
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
+  const onSubmitClick = async () => {
+    if (!id || !password) return;
+    try {
+      handleLogin();
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
