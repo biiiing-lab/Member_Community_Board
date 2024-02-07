@@ -3,14 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "./Button";
 import axios from "axios";
 import DateComponent from "./Date";
-import { getLoginCookie } from "../utils/cookieUtils";
 
 const WriteEditor = ({ type, editTitle, editContent }) => {
+  console.log(editTitle, editContent);
   const navigate = useNavigate();
   const [title, setTitle] = useState(editTitle);
   const [content, setContent] = useState(editContent);
   const { id } = useParams();
-  const cookieUser = getLoginCookie();
+  console.log(title, content);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -27,17 +27,22 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
       axios
         .get("http://localhost:8080/api/boards")
         .then((response) => {
+          // const idNumber = response.data;
+          // const nextId = (
+          //   parseInt(idNumber[idNumber.length - 1].id) + 1
+          // ).toString();
+          // console.log(nextId);
           const postData = {
-            writer: cookieUser,
+            // id: nextId,
+            writer: "임시의유저",
             title,
             content,
           };
 
-          console.log(postData);
           axios
             .post("http://localhost:8080/api/boards", postData)
             .then((res) => {
-              navigate("/");
+              navigate('/');
               console.log("글쓰기 성공");
             })
             .catch((error) => {
@@ -49,9 +54,11 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
         });
     } else if (type === "edit") {
       const postData = {
-        writer: cookieUser,
+        // id: id,
+        writer: "임시의유저",
         title,
         content,
+       
       };
 
       axios
@@ -72,10 +79,8 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
         {type === "write" ? "게시글 작성" : "게시글 수정"}
       </div>
       <div className="mb-4 flex">
-        <div className="text-gray-400 text-sm">{cookieUser} |</div>
-        <div className="text-gray-400 text-sm ml-1">
-          <DateComponent />
-        </div>
+        <div className="text-gray-400 text-sm">작성자이름 |</div>
+        <div className="text-gray-400 text-sm ml-1"><DateComponent/></div>
       </div>
       <form>
         <div className="mb-4 w-full rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600">

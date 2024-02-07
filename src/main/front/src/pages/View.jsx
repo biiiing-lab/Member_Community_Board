@@ -15,6 +15,7 @@ const View = () => {
         .get(`http://localhost:8080/api/boards/${id}`)
         .then((response) => {
           console.log("불러오기 성공!");
+          console.log(response.data);
           setData(response.data);
         })
         .catch((error) => {
@@ -25,7 +26,7 @@ const View = () => {
     fetchData();
   }, [id]);
 
-  console.log(data);
+  // console.log(data);
 
   const onEditButtonClick = () => {
     console.log(id);
