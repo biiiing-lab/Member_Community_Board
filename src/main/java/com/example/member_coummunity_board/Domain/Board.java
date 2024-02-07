@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -24,9 +25,11 @@ public class Board {
 
     @Column(name="content", nullable = false)
     private String content;
-    @CreatedDate
+
+    @CreationTimestamp
     @Column(name="regDate")
     private LocalDateTime regDate;
+
     @LastModifiedDate
     @Column(name="modDate")
     private LocalDateTime modDate;
@@ -35,9 +38,10 @@ public class Board {
     private String writer;
 
     @Builder
-    public Board(String title, String content){
+    public Board(String title, String content, String writer){
         this.title = title;
         this.content = content;
+        this.writer = writer;
     }
 
     public void update(String title, String content){
