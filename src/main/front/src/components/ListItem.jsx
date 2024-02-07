@@ -26,7 +26,7 @@ const ListItem = ({ title, author, date, content, id }) => {
         </div>
       </td>
       <td className="px-4 py-4">{author}</td>
-      <td className="px-4 py-4">{date.substring(0, 10)}</td>
+      <td className="px-4 py-4">{date ? date.substring(0, 10) : ""}</td>
     </tr>
   );
 };
