@@ -27,18 +27,13 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
       axios
         .get("http://localhost:8080/api/boards")
         .then((response) => {
-          // const idNumber = response.data;
-          // const nextId = (
-          //   parseInt(idNumber[idNumber.length - 1].id) + 1
-          // ).toString();
-          // console.log(nextId);
           const postData = {
-            // id: nextId,
-            writer: "임시의유저",
+            writer: cookieUser,
             title,
             content,
           };
 
+          console.log(postData);
           axios
             .post("http://localhost:8080/api/boards", postData)
             .then((res) => {
@@ -54,8 +49,7 @@ const WriteEditor = ({ type, editTitle, editContent }) => {
         });
     } else if (type === "edit") {
       const postData = {
-        // id: id,
-        writer: "임시의유저",
+        writer: cookieUser,
         title,
         content,
       };
