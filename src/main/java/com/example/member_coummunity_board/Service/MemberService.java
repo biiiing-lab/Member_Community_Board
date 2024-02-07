@@ -50,4 +50,11 @@ public class MemberService {
 
         return false;
     }
+
+    public String findByNickName(MemberLoginDto memberLoginDto) {
+        Member findMember = memberRepository.findByMemberId(memberLoginDto.getMemberId())
+                .orElseThrow(() -> Exception);
+
+        return findMember.getMemberName();
+    }
 }
