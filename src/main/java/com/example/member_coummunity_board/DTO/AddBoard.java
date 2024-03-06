@@ -11,10 +11,12 @@ import lombok.NoArgsConstructor;
 public class AddBoard {
     private String title;
     private String content;
+    private String writer;
     public Board toEntity(){
         return Board.builder()
                 .title(title)
                 .content(content)
+                .writer(writer)
                 .build();
     }
 }

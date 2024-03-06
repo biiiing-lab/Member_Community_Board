@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -33,7 +34,6 @@ public class BoardService {
     public void delete(long id){
         boardRepository.deleteById(id);
     }
-
     @Transactional
     public Board update(long id, UpdateRequest request) {
         Board board = boardRepository.findById(id)

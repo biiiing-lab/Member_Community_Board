@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 import axios from "axios";
+import { setLoginCookie } from "../utils/cookieUtils";
 
 const LogIn = () => {
   const [id, setId] = useState("test1");
@@ -20,42 +21,27 @@ const LogIn = () => {
     }
   };
 
-  const receivedToken = async () => {
+  const handleLogin = async () => {
     try {
       const response = await axios.post("http://localhost:8080/Login", {
         memberId: id,
         password: password,
       });
-      console.log(response.status);
-      return response.status;
+      setLoginCookie({ userName: response.data });
+      return response.data;
     } catch (error) {
-      console.error(" status fetch 오류:", error);
+      console.error(error);
       throw error;
     }
   };
 
   const onSubmitClick = async () => {
     if (!id || !password) return;
-    // await axios
-    //   .post("http://localhost:8080/Login", {
-    //     memberId: id,
-    //     password: password,
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
     try {
-      // const token = await receivedToken();
-      // localStorage.setItem("access_token", token);
-
-      receivedToken();
+      handleLogin();
       navigate("/");
     } catch (error) {
-      console.error("status setting 오류 ", error);
+      console.error(error);
     }
   };
 
