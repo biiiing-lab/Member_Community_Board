@@ -2,27 +2,16 @@ package com.example.member_coummunity_board.Controller;
 
 import com.example.member_coummunity_board.DTO.MemberJoinDto;
 import com.example.member_coummunity_board.DTO.MemberLoginDto;
-import com.example.member_coummunity_board.DTO.MemberResponseDto;
-import com.example.member_coummunity_board.Domain.Member;
 import com.example.member_coummunity_board.Repository.MemberRepository;
 import com.example.member_coummunity_board.Service.MemberService;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.Group;
-import org.apache.catalina.Role;
-import org.apache.catalina.UserDatabase;
-import org.apache.coyote.Response;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.util.Iterator;
-import java.util.Optional;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RequiredArgsConstructor
 @RestController
@@ -38,13 +27,27 @@ public class MemberController {
     }
 
     @PostMapping("/Login")
-    public ResponseEntity<String> Login(@RequestBody MemberLoginDto memberLoginDto) {
+    public ResponseEntity<?> Login(@RequestBody MemberLoginDto memberLoginDto, HttpServletResponse response) {
+
         if(memberService.login(memberLoginDto)) {
+            response.addCookie(memberService.makeCookie(memberLoginDto)); // 쿠키 저장
             String memberName = memberService.findByNickName(memberLoginDto);
             return ResponseEntity.ok().body(memberName);
+
         } else {
             return ResponseEntity.ok().body("오류");
         }
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<?> loginCheck(@CookieValue(name="checkLogin") HttpServletRequest request) {
+
+        Cookie[] cookies = request.getCookies();
+
+        if (cookies == null || cookies.length == 0) {
+            return new ResponseEntity<>(new RedirectView("/Login"), HttpStatus.FOUND);
+        }
+        return ResponseEntity.ok().body("ok");
     }
 
     /*@PostMapping("/Login")

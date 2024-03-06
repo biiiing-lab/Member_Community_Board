@@ -2,18 +2,12 @@ package com.example.member_coummunity_board.Service;
 
 import com.example.member_coummunity_board.DTO.MemberJoinDto;
 import com.example.member_coummunity_board.DTO.MemberLoginDto;
-import com.example.member_coummunity_board.DTO.MemberResponseDto;
 import com.example.member_coummunity_board.Domain.Member;
 import com.example.member_coummunity_board.Repository.MemberRepository;
-import lombok.AllArgsConstructor;
+import jakarta.servlet.http.Cookie;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.imageio.IIOException;
 
 @Service
 @RequiredArgsConstructor
@@ -49,6 +43,16 @@ public class MemberService {
         }
 
         return false;
+    }
+
+    public Cookie makeCookie(MemberLoginDto memberLoginDto) {
+        Cookie cookie = new Cookie("checkLogin", memberLoginDto.getMemberId());
+        cookie.setDomain("localhost");
+        cookie.setPath("/Login");
+        // 1시간 저장
+        cookie.setMaxAge(60 * 60);
+        cookie.setSecure(false);
+        return cookie;
     }
 
     public String findByNickName(MemberLoginDto memberLoginDto) {
